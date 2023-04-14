@@ -26,7 +26,6 @@ def get_weather():
     return temperature, pressure, comment
 
 
-#token = "your-api-token-goes-here"
 token = "your-api-token-goes-here"
 customer_id = "your-customer-id"
 
@@ -35,11 +34,11 @@ assignment_id = "123"
 
 # This is the URL we use to submit our QA data to. TestListInstance is
 # synonymous with QA Session.
-url = f"https://dev.radmachine.radformation.com/{customer_id}/api/qa/testlistinstances/"
+url = f"https://radmachine.radformation.com/{customer_id}/api/qa/testlistinstances/"
 
 # This is the URL we use to tell RadMachine which Assignment we are performing.
 # UnitTestCollection is synonymous with Assignment
-assignment_url = f"https://dev.radmachine.radformation.com/{customer_id}/api/qa/unittestcollections/{assignment_id}/"
+assignment_url = f"https://radmachine.radformation.com/{customer_id}/api/qa/unittestcollections/{assignment_id}/"
 
 s = Session()
 s.headers['RadAuthorization'] = f"Token {token}"

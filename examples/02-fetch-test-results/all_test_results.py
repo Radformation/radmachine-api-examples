@@ -3,6 +3,7 @@ specific test on one unit.  It then creates a two column csv file
 (all_test_results.csv) containing with one column being the date the test was
 performed and the second column being the result value."""
 
+import time
 from requests import Session
 
 # Set your API token and customer identifier here.  As a reminder if you access
@@ -43,3 +44,7 @@ with open("all_test_results.csv", "w") as f:
             date = result['work_completed']
             value = result['value']
             f.write(f"{date},{value}\n")
+
+        if next_page:
+            # don't make requests too quickly!
+            time.sleep(0.5)
