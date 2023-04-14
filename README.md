@@ -46,3 +46,5 @@ The examples are as follows:
 * [./examples/02-fetch-test-results/all_test_results.py](./examples/02-fetch-test-results/all_test_results.py)
     * Use the API to fetch *all* of the results for a specific test performed on a unit
       Demonstrates fetching multiple pages of results
+* [./examples/03-performing-qa/ktp.py](./examples/03-performing-qa/ktp.py)
+    * Use the API to perform a simple test list with two numerical tests and a calculation.
