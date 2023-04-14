@@ -40,4 +40,9 @@ The examples are as follows:
     * Use the API to fetch a list of all your units and print their names using Python
 * [./examples/01-hello-api/hello.js](./examples/01-hello-api/hello.js)
     * Use the API to fetch a list of all your units and print their names using Javascript
-
+* [./examples/02-fetch-test-results/test_results.py](./examples/02-fetch-test-results/test_results.py)
+    * Use the API to fetch the most recent results for a specific test performed on a unit.
+      Demonstrates filtering and ordering of results
+* [./examples/02-fetch-test-results/all_test_results.py](./examples/02-fetch-test-results/all_test_results.py)
+    * Use the API to fetch *all* of the results for a specific test performed on a unit
+      Demonstrates fetching multiple pages of results

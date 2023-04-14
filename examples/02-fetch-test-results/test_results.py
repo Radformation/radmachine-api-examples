@@ -1,0 +1,35 @@
+"""This example uses the RadMachine API to fetch the most recent results of a
+specific test on one unit.  It then creates a two column csv file
+(test_results.csv) containing with one column being the date the test was
+performed and the second column being the result value."""
+
+from requests import Session
+
+# Set your API token and customer identifier here.  As a reminder if you access
+# RadMachine at e.g.  https://radmachine.radformation.com/myclinic/ then your
+# customer id is "myclinic"
+token = "your-api-token-goes-here"
+customer_id = "your-customer-id"
+
+# You can set the name of the unit and test you want to download results for
+unit_name = "Example - TrueBeam 1"
+test_name = "Measured Dose (cGy) :: 6MV"
+
+url = f"https://radmachine.radformation.com/{customer_id}/api/qa/testinstances/"
+s = Session()
+s.headers['RadAuthorization'] = f"Token {token}"
+
+filters = {
+    'unit_test_info__unit__name': unit_name, # filter results to a specific unit
+    'unit_test_info__test__name': test_name, # filter results to a specific test
+    'skipped': False,  # ensure the test was not skipped
+    'ordering': '-work_completed',  # order with most recent results first
+}
+
+response = s.get(url, params=filters)
+
+with open("test_results.csv", "w") as f:
+    for result in response.json()['results']:
+        date = result['work_completed']
+        value = result['value']
+        f.write(f"{date},{value}\n")
