@@ -9,6 +9,19 @@ please file an
 [issue](https://github.com/Radformation/radmachine-api-examples/issues) so
 we can consider adding it!
 
+## Programming Language Choice
+
+The examples here are mostly written in Python, but you can use whatever
+language you want to talk to the API!  Virtually all mainstream languages
+(Python, Javascript, Matlab, C#, Ruby, R, VB, ...) have the ability to
+serialize & deserialize JSON and make HTTP requests.  Python is a relatively
+easy language to read so the examples here should be relatively straightforwrad
+to convert to whatever language you're most comfortable with!
+
+If you do convert some of the examples to a different language, please consider
+forking this repository, adding your example, and making a pull request so we
+can add it here!
+
 ## Getting started
 
 All examples should run on any recent Python 3.X version (there is also [one
@@ -19,7 +32,7 @@ Python including how to run these files is outside the scope of this document
 but there are many many blog posts, tutorials, and courses available on the
 web.  If you get stuck somewhere you can create an [issue in this code
 repository](https://github.com/Radformation/radmachine-api-examples/issues) and
-we will help you out!
+we will help you out.
 
 All the examples use the popular
 [requests](https://requests.readthedocs.io/en/latest/) library for making HTTP
@@ -55,3 +68,7 @@ The examples are as follows:
 * [./examples/04-upload-test/upload_dicom.py](./examples/04-upload-test/upload_dicom.py)
     * Use the API to perform a test list that requires uploading a dicom file.
       Demonstrates Base 64 encoding a binary file for upload
+* [./examples/05-reports/qa_session_report.py](./examples/05-reports/qa_session_report.py)
+    * Use the API to download a report for a specific QA Session
+* [./examples/05-reports/saved_reports.py](./examples/05-reports/saved_reports.py)
+    * Use the API to run all of your saved reports
