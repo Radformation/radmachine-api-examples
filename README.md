@@ -147,7 +147,7 @@ not flooding the server with requests.  It depends on the API you are dealing
 with but generally, inserting a pause of 0.5s - 1s should be adequate. For
 example:
 
-```
+```python
     # hammer the server!
     while True: # :(
         response = s.get(url)
@@ -163,7 +163,7 @@ use of caches and removing redundant API calls can make your program run faster
 and keep the API servers happy. For example:
 
 
-```
+```python
     tests = ["6MV Output", "10MV Output"]
     units = ["Unit 1", "Unit 2"]
 
