@@ -49,9 +49,9 @@ The examples are as follows:
 * [./examples/03-performing-qa/ktp.py](./examples/03-performing-qa/ktp.py)
     * Use the API to perform a simple test list with two numerical tests and a calculation.
       Demonstrates basic QA session creation
-* [./examples/03-upload-test/upload_text.py](./examples/03-upload-test/upload_text.py)
+* [./examples/04-upload-test/upload_text.py](./examples/04-upload-test/upload_text.py)
     * Use the API to perform a test list that requires uploading a text file.
       Demonstrates QA session creation with an upload test
-* [./examples/03-upload-test/upload_dicom.py](./examples/03-upload-test/upload_dicom.py)
+* [./examples/04-upload-test/upload_dicom.py](./examples/04-upload-test/upload_dicom.py)
     * Use the API to perform a test list that requires uploading a dicom file.
       Demonstrates Base 64 encoding a binary file for upload
