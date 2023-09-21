@@ -36,7 +36,6 @@ which means your assignment identifier is `123` """
 
 from requests import Session
 import base64
-import random
 
 
 # set your token and customer ID here
