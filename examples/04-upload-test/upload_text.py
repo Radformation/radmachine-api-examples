@@ -1,6 +1,6 @@
 """This example uses the RadMachine API to create a QA Session for a test
-list containg an upload test and two calculations. A text file is being uploaded
-so there is no need to base64 encode the data first (although that will work too!).
+list containing an upload test. A text file is being uploaded so there is no
+need to base64 encode the data first (although that will work too!).
 
 In order to test this example out, you will need to create and assign a test
 list with a single test:
@@ -21,8 +21,6 @@ like:
 which means your assignment identifier is `123` """
 
 from requests import Session
-import base64
-import random
 
 
 # set your token and customer ID here
@@ -44,7 +42,7 @@ s = Session()
 s.headers['RadAuthorization'] = f"Token {token}"
 
 # read our data to upload
-f = open("test.dcm", "rb")
+f = open("data.txt", "r")
 data = f.read()
 
 data = {
@@ -52,8 +50,8 @@ data = {
     'work_started': "2023-04-12 10:00",
     'work_completed': "2023-04-12 10:01",
     'tests': {
-        "dicom_upload": {
-            "filename": "test.dcm",
+        "upload": {
+            "filename": "data.txt",
             "encoding": "text",
             "value": data,
         },

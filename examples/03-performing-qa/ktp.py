@@ -14,7 +14,6 @@ are performing the test list in the UI, it will have a url like:
 which means your assignment identifier is `123` """
 
 from requests import Session
-import random
 
 
 def get_weather():
