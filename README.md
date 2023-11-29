@@ -77,6 +77,8 @@ Practices section.  With that out of the way, the examples are listed below:
     * Use the API to download a report for a specific QA Session
 * [./examples/05-reports/saved_reports.py](./examples/05-reports/saved_reports.py)
     * Use the API to run all of your saved reports
+* [./examples/06-qa-repeater/qa-repeater.py](./examples/06-qa-repeater/qarepeater.py)
+    * A QARepeater class that demonstrates how to perform a constancy check using the API
 
 
 ## API Usage Best Practices
