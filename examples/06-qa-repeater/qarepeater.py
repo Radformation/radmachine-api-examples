@@ -17,8 +17,10 @@ Sample Usage:
     results = repeater.repeat_qa(num_sessions)
 
     with open('results.csv', 'w') as f:
-        writer = csv.writer(f)
-        writer.writerows(results)
+        writer = csv.writer(f, quoting=csv.QUOTE_NONNUMERIC)
+        for session_result in results:
+            writer.writerows(session_result)
+            writer.writerow([])
 
 
 Known Limitations:
@@ -93,10 +95,10 @@ class QARepeater:
         except Exception:
             raise ValueError("Unable to contact RadMachine. Check your URL and API key are correct.")
 
-    def repeat_qa(self, num_instances: int = 1) -> list[tuple]:
+    def repeat_qa(self, num_sessions: int = 1) -> list[tuple]:
         """Re-perform one or more of the most recent QA sessions for the given assignment.
 
-        num_instances: how many QA sessions should be reperformed. Currently
+        num_sessions: how many QA sessions should be reperformed. Currently
         this is always the most recent sessions although this class could be
         adapted to use specific "baseline" sessions.
 
@@ -111,7 +113,7 @@ class QARepeater:
         # Now we are going to iterate over our last N existing sessions,
         # and use the results form each session to perform the assignment again,
         # and compare the new results to the existing sessions values.
-        for previous_session in self.previous_sessions(num_instances):
+        for previous_session in self.previous_sessions(num_sessions):
 
             # dictionary mapping test identifer to the previously calculated
             # result for comparing to the new calculated results
@@ -137,17 +139,14 @@ class QARepeater:
                 if test["type"] == "upload":
                     attachment_id = value
                     if attachment_id:
-                        try:
-                            # Note this is currently failing because the download link gets redirected
-                            # to the RadMachine login page. Should be fixed in staging Mid Dec 2023
-                            attachment = self.fetch_attachment(attachment_id)
-                            test_values_for_perform[test["slug"]] = {
-                                "value": base64.b64decode(attachment.read()).decode(),
-                                "filename": attachment.name,
-                                "encoding": "base64",
-                            }
-                        except Exception:
-                            pass
+                        # Note this is currently failing because the download link gets redirected
+                        # to the RadMachine login page. Should be fixed in staging Mid Dec 2023
+                        attachment = self.fetch_attachment(attachment_id)
+                        test_values_for_perform[test["slug"]] = {
+                            "value": base64.b64decode(attachment.read()).decode(),
+                            "filename": attachment.name,
+                            "encoding": "base64",
+                        }
                 else:
                     test_values_for_perform[test["slug"]] = {"value": value }
 
@@ -280,9 +279,9 @@ class QARepeater:
     def fetch_attachment(self, attachment_id: int) -> io.BytesIO:
         """Download an attachment from the API and return it as an io.BytesIO."""
         attachment = self.get_api_objects(f"/attachments/attachments/{attachment_id}/")
-        download_link = attachment["attachment"]
+        download_link = attachment["download"]
         response = self.session.get(download_link, stream=True)
-        f = io.BytesIO(response.raw)
+        f = io.BytesIO(response.raw.read())
         f.name = attachment['label']
         f.seek(0)
         return f
