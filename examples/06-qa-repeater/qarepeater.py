@@ -143,7 +143,7 @@ class QARepeater:
                         # to the RadMachine login page. Should be fixed in staging Mid Dec 2023
                         attachment = self.fetch_attachment(attachment_id)
                         test_values_for_perform[test["slug"]] = {
-                            "value": base64.b64decode(attachment.read()).decode(),
+                            "value": base64.b64encode(attachment.read()).decode(),
                             "filename": attachment.name,
                             "encoding": "base64",
                         }
